@@ -1,0 +1,11 @@
+NODE_ENV=production
+INSTANCE=production
+
+HOST=0.0.0.0
+PORT=3001
+
+MYSQL_HOST=meudb.cefe8s0y2lfo.us-east-1.rds.amazonaws.com
+MYSQL_PORT=3306
+MYSQL_USER=masterdb
+MYSQL_PASSWORD=8taHev0ZQveLgc4Gx2uC
+MYSQL_DATABASE=meudb

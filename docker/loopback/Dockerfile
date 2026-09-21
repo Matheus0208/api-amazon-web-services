@@ -16,9 +16,10 @@ RUN mkdir /app
 RUN sed -i 's/deb.debian.org/archive.debian.org/g; s|security.debian.org|archive.debian.org/debian-security|g' /etc/apt/sources.list \
     && sed -i '/buster-updates/d' /etc/apt/sources.list \
     && apt-get update && apt-get upgrade -y
-RUN apt-get install mysql-client -y
+RUN apt-get install -y default-mysql-client
 
 # Run update and Strongloop install
-RUN npm install -g npm
+RUN npm install -g npm@6
 RUN npm install -g pm2
 RUN pm2 install pm2-logrotate
+

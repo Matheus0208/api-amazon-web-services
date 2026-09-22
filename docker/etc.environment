@@ -7,5 +7,5 @@ PORT=3001
 MYSQL_HOST=mydb.cefe8s0y2lfo.us-east-1.rds.amazonaws.com
 MYSQL_PORT=3306
 MYSQL_USER=masterdb
-MYSQL_PASSWORD=pSZ8euxqost3kNPcQjZZ
+MYSQL_PASSWORD=otytIsup5Vuj4XKMVPcW
 MYSQL_DATABASE=mybd

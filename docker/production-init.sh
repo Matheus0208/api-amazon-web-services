@@ -11,15 +11,25 @@ if [[ ! -e $DIR ]]; then
   sudo ln -s /usr/local/bin/docker-compose /usr/sbin/docker-compose
 fi
 
+# Resolve the project root from this script's own location, instead of a
+# hardcoded path, so this works no matter what folder the repo is cloned into.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
 # Database migration
 echo "Migrating Database..."
 
-# Uncompress Dist
-cd /app/uiq/www/api/ && tar -xzvf dist.tar.gz
+# Uncompress Dist (only if a pre-built dist.tar.gz is present; this project
+# normally builds from source instead, via npm run rebuild at container start)
+if [[ -f "$PROJECT_ROOT/www/api/dist.tar.gz" ]]; then
+  cd "$PROJECT_ROOT/www/api/" && tar -xzvf dist.tar.gz
+else
+  echo "No dist.tar.gz found, skipping (building from source instead)."
+fi
 
 # Build Docker images
 echo "Building Docker Images..."
-cd /app/uiq/
+cd "$PROJECT_ROOT"
 ./docker/production-build.sh
 
 # Run containers for the first time
